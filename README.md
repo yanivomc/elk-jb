@@ -1,7 +1,7 @@
 # Elastic stack (ELK) on Docker - JohnBryce 
 ## Maintaner - Yaniv cohen - Yanivomc@gmail.com 
 
-Run the latest version of the [Elastic stack](https://www.elastic.co/elk-stack) with Docker and Docker Compose.
+Running the latest version of the [Elastic stack](https://www.elastic.co/elk-stack) with Docker and Docker Compose.
 
 It will give you the ability to analyze any data set by using the searching/aggregation capabilities of Elasticsearch and the visualization power of Kibana.
 
