@@ -45,9 +45,9 @@ services:
 
   logstash:
     image:  yanivomc/jb-elk-logstash:1.00
-    volumes:
-      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
-      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+    # volumes:
+    #   - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+    #   - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
     ports:
       - "5000:5000"
     environment:
@@ -60,8 +60,8 @@ services:
   kibana:
     image:  yanivomc/jb-elk-kibana:1.00  
     container_name: kibana 
-    volumes:
-      - ./kibana/config/:/usr/share/kibana/config:ro
+    # volumes:
+    #   - ./kibana/config/:/usr/share/kibana/config:ro
     ports:
       - "5601:5601"
     networks:
@@ -87,8 +87,8 @@ services:
     image: nginx:latest
     ports:
         - 8080:80
-    volumes:
-        - ./nginx-config/:/etc/nginx/conf.d/
+    # volumes:
+    #     - ./nginx-config/:/etc/nginx/conf.d/
     command: /bin/bash -c "nginx -g 'daemon off;'"
     ulimits:
       nproc: 65535
