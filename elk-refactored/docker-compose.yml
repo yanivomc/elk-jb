@@ -2,7 +2,11 @@ version: '3'
 
 services:
   elasticsearch:
-    image:  yanivomc/jb-elk-elasticsearch:1.00
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    image:  rooj-infra/rooj-elk-elasticsearch:1.00
  #   image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
     container_name: elasticsearch
     environment:
@@ -44,10 +48,14 @@ services:
   #     - elk     
 
   logstash:
-    image:  yanivomc/jb-elk-logstash:1.00
-    # volumes:
-    #   - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
-    #   - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+    build:
+      context: logstash/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    image:  rooj-infra/rooj-elk-logstash:1.00
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
     ports:
       - "5000:5000"
     environment:
@@ -58,10 +66,14 @@ services:
       - elasticsearch
 
   kibana:
-    image:  yanivomc/jb-elk-kibana:1.00  
+    build:
+      context: kibana/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    image:  rooj-infra/rooj-elk-kibana:1.00  
     container_name: kibana 
-    # volumes:
-    #   - ./kibana/config/:/usr/share/kibana/config:ro
+    volumes:
+      - ./kibana/config/:/usr/share/kibana/config:ro
     ports:
       - "5601:5601"
     networks:
@@ -87,8 +99,8 @@ services:
     image: nginx:latest
     ports:
         - 8080:80
-    # volumes:
-    #     - ./nginx-config/:/etc/nginx/conf.d/
+    volumes:
+        - ./nginx-config/:/etc/nginx/conf.d/
     command: /bin/bash -c "nginx -g 'daemon off;'"
     ulimits:
       nproc: 65535
