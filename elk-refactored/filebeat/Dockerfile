@@ -16,7 +16,7 @@ RUN chown root:filebeat /healthcheck/healthcheck.sh && chmod +x /healthcheck/hea
 RUN chown root:filebeat /usr/share/filebeat/es-nginx-pipline.json
 RUN chown root:filebeat /usr/share/filebeat/es-nginx-template.json
 RUN chown root:filebeat /usr/share/filebeat/filebeat.yml
-RUN chown root:filebeat /var/log/nginx/nginx_json_logs.txt && chown root:filebeat /var/log/apache2/access.log
+#RUN chown root:filebeat /var/log/nginx/nginx_json_logs.txt && chown root:filebeat /var/log/apache2/access.log
 USER filebeat
 ENTRYPOINT [ "/healthcheck/healthcheck.sh" ]
 
