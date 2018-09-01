@@ -1,5 +1,8 @@
 version: '3'
-
+#### for windows:
+# export COMPOSE_CONVERT_WINDOWS_PATHS=1
+# or SET COMPOSE_CONVERT_WINDOWS_PATHS=1  before starting comose.
+# this should solve the volume share issue
 services:
   elasticsearch:
     image:  yanivomc/jb-elk-elasticsearch:1.00
