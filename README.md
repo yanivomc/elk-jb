@@ -14,7 +14,15 @@ Everything is based on the official Docker images from Elastic:
 * [logstash](https://github.com/elastic/logstash-docker)
 * [kibana](https://github.com/elastic/kibana-docker)
 
-
+**********************************
+# NOTE WINDOWS USERS: BEFORE STARTING COMPOSE UP
+- On Command Line: "set COMPOSE_CONVERT_WINDOWS_PATHS=1";
+- Restart Docker for Windows;
+- Go to Docker for Windows settings > Shared Drives > Reset credentials > select drive > Apply;
+- Reopen Command Line;
+- Kill the Containers;
+- Rerun the Containers.
+**********************************
 Data:
 ## NGINX Data is already prepoulated automaticly on stack buildup  using filebeat
 
