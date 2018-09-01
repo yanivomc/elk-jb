@@ -80,20 +80,23 @@ services:
       - elk
     depends_on:
       - elasticsearch
+
+
 ### Unmark file beat if you wish to load apache content logs to logstash and elastic
-  # filebeat:
-  #   build:
-  #     context: filebeat/
-  #     args:
-  #       #ELK_VERSION: $ELK_VERSION
-  #       ELK_VERSION: $ELK_VERSION
-  #   image:  yanivomc/jb-elk-filebeat:1.00  
-  #   #volumes:
-  #   #  - ./filebeat/config/:/usr/share/filebeat/filebeat.yml:ro
-  #   networks:
-  #     - elk
-  #   depends_on:
-  #     - elasticsearch
+  filebeat:
+    build:
+      context: filebeat/
+      args:
+        #ELK_VERSION: $ELK_VERSION
+        ELK_VERSION: $ELK_VERSION
+    image:  rooj-infra/rooj-elk-filebeat:1.00  
+    volumes:
+      - ./filebeat/config/:/usr/share/filebeat/filebeat.yml:ro
+      - ./filebeat/datasets/:/var/log/log/:ro ### All .log files that will be mounted here will be sent to ELK
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
 
   nginx:
     image: nginx:latest

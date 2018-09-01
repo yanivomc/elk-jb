@@ -1,11 +1,11 @@
-##### FILEBEAT NGINX Source log
-# filebeat.inputs:
-# - type: log
-#   enabled: true
-#   paths:
-#     - /var/log/nginx/nginx_json_logs.txt
-#   json.keys_under_root: true
-#   document_type: logs
+
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/elk/*.log
+  json.keys_under_root: true
+  document_type: logs
 
 # output.elasticsearch:
 #   hosts: ["elasticsearch:9200"]
@@ -14,9 +14,6 @@
 
 # output.console:
 #   pretty: true
-
-filebeat.modules:
-- module: apache2
 
 
 # output.elasticsearch:
