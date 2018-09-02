@@ -47,7 +47,11 @@ services:
   #     - elk     
 
   logstash:
-    image:  yanivomc/jb-elk-logstash:1.00
+    build:
+      context: logstash/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    image:  yanivomc/jb-elk-logstash-accedient:1.00
     # volumes:
     #   - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
     #   - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
