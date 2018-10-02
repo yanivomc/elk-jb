@@ -2,6 +2,7 @@ ARG ELK_VERSION
 
 # https://github.com/elastic/elasticsearch-docker
 FROM docker.elastic.co/elasticsearch/elasticsearch:${ELK_VERSION}
+RUN export ES_HEAP_SIZE=2g
 #RUN elasticsearch-plugin install ingest-user-agent
 #RUN elasticsearch-plugin install ingest-geoip
 # Add your elasticsearch plugins setup here

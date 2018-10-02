@@ -1,0 +1,12 @@
+# FILE IGNORED IN GIT DUE TO PASS
+access_key: "AKIAJMEMB6MNOP5FYT4Q"
+secret_key: "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"
+host_base: 
+host_bucket: 
+use_https: True
+signature_v2: True
+bucket: "rooj-data-import-prod-us"
+pattern: "*"
+folders:
+  - "amdocs_in"
+

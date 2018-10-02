@@ -1,0 +1,11 @@
+version: '3'
+services:
+  blackbox-exporter:
+    build: 
+      context: .
+      args:
+        - TAG=${TAG}
+        - REPO=${REPO}
+        - IMAGE_NAME=${IMAGE_NAME}
+    image: "${REPO}/${IMAGE_NAME}:${TAG}"
+    

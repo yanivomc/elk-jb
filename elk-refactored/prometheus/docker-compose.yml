@@ -1,0 +1,28 @@
+version: '3'
+services:
+  prometheus:
+    build: 
+      context: server/
+      args:
+        - TAG=$TAG
+        - REPO=$REPO
+        - IMAGE_NAME=$IMAGE_NAME
+    image: "$REPO/$IMAGE_NAME:$TAG"
+    
+  
+  alertmanager:
+    build: 
+      context: alertmanager/
+      args:
+        - TAG=$TAG
+        - REPO=$REPO
+    image: "$REPO/alertmanager:$TAG"
+
+
+  es-monitoring:
+    build: 
+      context: alertmanager/
+      args:
+        - TAG=$TAG
+        - REPO=$REPO
+    image: "$REPO/alertmanager:$TAG"
