@@ -26,25 +26,25 @@ services:
 
 ### Unmark to add second elastic to cluster
 
-  # elasticsearch2:
-  #   build:
-  #     context: elasticsearch/
-  #     args:
-  #       ELK_VERSION: $ELK_VERSION
-  #   #container_name: elasticsearch2 
-  #   environment:
-  #     - cluster.name=docker-cluster
-  #     - bootstrap.memory_lock=true
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-  #     - "discovery.zen.ping.unicast.hosts=elasticsearch"
-  #   ulimits:
-  #     memlock:
-  #       soft: -1
-  #       hard: -1
-  #   # volumes: #### Remarked for the option of scaling as it is not an option to use the same volume for more then one elastic
-  #   #   - esdata2:/usr/share/elasticsearch/data
-  #   networks:
-  #     - elk     
+  elasticsearch2:
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    #container_name: elasticsearch2 
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes: #### Remarked for the option of scaling as it is not an option to use the same volume for more then one elastic
+    #   - esdata2:/usr/share/elasticsearch/data
+    networks:
+      - elk     
 
   logstash:
     build:
