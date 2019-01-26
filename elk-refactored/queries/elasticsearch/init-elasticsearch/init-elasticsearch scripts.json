@@ -57,6 +57,24 @@ curl -X GET "localhost:9200/movies/_search?pretty"
 curl -XDELETE localhost:9200/movies
 
 
+// Loading Shakspir data:
+Build Metadata 
+PUT /shakespeare
+{
+ "mappings": {
+  "doc": {
+   "properties": {
+    "speaker": {"type": "keyword"},
+    "play_name": {"type": "keyword"},
+    "line_id": {"type": "integer"},
+    "speech_number": {"type": "integer"}
+   }
+  }
+ }
+}
 
 
+// Load the data using the API
+
+curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/shakespeare/doc/_bulk?pretty' --data-binary @shakespeare_6.0.json
 

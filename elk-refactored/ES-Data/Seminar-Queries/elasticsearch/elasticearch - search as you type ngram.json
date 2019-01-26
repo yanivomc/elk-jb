@@ -43,8 +43,8 @@ curl -X PUT "localhost:9200/movies" -d '
 // unigram [S], biagram [St], unigram[Sta]
 curl -XGET "localhost:9200/movies/_analyze?pretty" -d '
 {
-	"analyzer": "autocomplete", // our analyzer name we created above
-	"text" : "Sta" // Text keyword to test our analyzer with
+	"analyzer": "autocomplete", 
+	"text" : "Sta"
 }
 '
 

@@ -26,25 +26,25 @@ services:
 
 ### Unmark to add second elastic to cluster
 
-  elasticsearch2:
-    build:
-      context: elasticsearch/
-      args:
-        ELK_VERSION: $ELK_VERSION
-    #container_name: elasticsearch2 
-    environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.zen.ping.unicast.hosts=elasticsearch"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    # volumes: #### Remarked for the option of scaling as it is not an option to use the same volume for more then one elastic
-    #   - esdata2:/usr/share/elasticsearch/data
-    networks:
-      - elk     
+  # elasticsearch2:
+  #   build:
+  #     context: elasticsearch/
+  #     args:
+  #       ELK_VERSION: $ELK_VERSION
+  #   #container_name: elasticsearch2 
+  #   environment:
+  #     - cluster.name=docker-cluster
+  #     - bootstrap.memory_lock=true
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #     - "discovery.zen.ping.unicast.hosts=elasticsearch"
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #   # volumes: #### Remarked for the option of scaling as it is not an option to use the same volume for more then one elastic
+  #   #   - esdata2:/usr/share/elasticsearch/data
+  #   networks:
+  #     - elk     
 
   logstash:
     build:
@@ -108,53 +108,53 @@ services:
 
 
 ####### Monitoring - Unmark to enable Prometheus and Grafana monitoring
-  elasticsearch_exporter:
-      image: justwatch/elasticsearch_exporter:1.0.2
-      command:
-        - '-es.uri=http://elasticsearch:9200'
-      restart: always
-      ports:
-        - "127.0.0.1:9108:9108"
-      networks:
-        - elk
+  # elasticsearch_exporter:
+  #     image: justwatch/elasticsearch_exporter:1.0.2
+  #     command:
+  #       - '-es.uri=http://elasticsearch:9200'
+  #     restart: always
+  #     ports:
+  #       - "127.0.0.1:9108:9108"
+  #     networks:
+  #       - elk
 
-  prometheus:
-      image: yanivomc/prometheus:elk-monitoring-1.0
-      environment:
-        - ALERTMANAGERURL=alertmanager:9118
-      restart: always
-      ports:
-        - "9090:9090"
-      networks:
-        - elk
+  # prometheus:
+  #     image: yanivomc/prometheus:elk-monitoring-1.0
+  #     environment:
+  #       - ALERTMANAGERURL=alertmanager:9118
+  #     restart: always
+  #     ports:
+  #       - "9090:9090"
+  #     networks:
+  #       - elk
   
-  es-monitoring:
-      image: yanivomc/es-monitor:elk-monitoring-1.0
+  # es-monitoring:
+  #     image: yanivomc/es-monitor:elk-monitoring-1.0
       
-      restart: always
-      networks:
-        - elk
-      depends_on:
-      - elasticsearch
+  #     restart: always
+  #     networks:
+  #       - elk
+  #     depends_on:
+  #     - elasticsearch
 
 
-  alertmanager:
-      image: yanivomc/alertmanager:elk-monitoring-1.0
-      restart: always
-      ports:
-        - "9118:9118"
-      networks:
-        - elk
-      depends_on:
-      - prometheus
+  # alertmanager:
+  #     image: yanivomc/alertmanager:elk-monitoring-1.0
+  #     restart: always
+  #     ports:
+  #       - "9118:9118"
+  #     networks:
+  #       - elk
+  #     depends_on:
+  #     - prometheus
 
-  grafana:
-      image: grafana/grafana
-      restart: always
-      ports:
-        - "3000:3000"
-      networks:
-        - elk
+  # grafana:
+  #     image: grafana/grafana
+  #     restart: always
+  #     ports:
+  #       - "3000:3000"
+  #     networks:
+  #       - elk
 
 
 networks:

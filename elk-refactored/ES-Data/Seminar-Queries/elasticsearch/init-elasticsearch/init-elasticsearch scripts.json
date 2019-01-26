@@ -58,5 +58,30 @@ curl -XDELETE localhost:9200/movies
 
 
 
+/// Load WEBSERVER LOGS
+// Create mapping
+
+PUT /logstash-webserver
+{
+  "mappings": {
+    "log": {
+      "properties": {
+        "geo": {
+          "properties": {
+            "coordinates": {
+              "type": "geo_point"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Load data:
+curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/logstash-webserver/_bulk?pretty' --data-binary @logs.jsonl
+curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/shakespeare/doc/_bulk?pretty' --data-binary @shakespeare_6.0.json
+
 
 
