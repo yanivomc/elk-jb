@@ -1,7 +1,7 @@
 ARG ELK_VERSION
 
 # https://github.com/elastic/kibana-docker
-FROM docker.elastic.co/beats/filebeat:6.3.2
+FROM docker.elastic.co/beats/filebeat:6.5.4
 COPY ./templates/es-nginx-pipline.json /usr/share/filebeat/es-nginx-pipline.json
 COPY ./templates/es-nginx-template.json /usr/share/filebeat/es-nginx-template.json
 COPY ./config/filebeat.yml /usr/share/filebeat/filebeat.yml

@@ -5,8 +5,12 @@ version: '3'
 # this should solve the volume share issue
 services:
   elasticsearch:
-    image:  yanivomc/jb-elk-elasticsearch:1.00
+    #image:  yanivomc/jb-elk-elasticsearch:1.00
  #   image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    build:
+      context: ./elasticsearch/
+      args:
+        ELK_VERSION: 1
     container_name: elasticsearch
     environment:
       - cluster.name=docker-cluster
@@ -46,26 +50,27 @@ services:
   #   networks:
   #     - elk     
 
-  logstash:
-    build:
-      context: logstash/
-      args:
-        ELK_VERSION: $ELK_VERSION
-    image:  yanivomc/jb-elk-logstash-accedient:1.03
-    # volumes:
-    #   - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
-    #   - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
-    ports:
-      - "5000:5000"
-    environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    networks:
-      - elk
-    depends_on:
-      - elasticsearch
+  # logstash:
+  #   build:
+  #     context: logstash/
+  #     args:
+  #       ELK_VERSION: $ELK_VERSION
+  #   image:  yanivomc/jb-elk-logstash-accedient:1.03
+  #   # volumes:
+  #   #   - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+  #   #   - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+  #   ports:
+  #     - "5000:5000"
+  #   environment:
+  #     LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+  #   networks:
+  #     - elk
+  #   depends_on:
+  #     - elasticsearch
 
   kibana:
-    image:  yanivomc/jb-elk-kibana:1.00  
+    build: ./kibana
+    # image:  yanivomc/jb-elk-kibana:1.00  
     container_name: kibana 
     # volumes:
     #   - ./kibana/config/:/usr/share/kibana/config:ro
@@ -91,19 +96,19 @@ services:
   #   depends_on:
   #     - elasticsearch
 
-  nginx:
-    image: nginx:latest
-    ports:
-        - 8080:80
-    # volumes:
-    #     - ./nginx-config/:/etc/nginx/conf.d/
-    command: /bin/bash -c "nginx -g 'daemon off;'"
-    ulimits:
-      nproc: 65535
-    networks:
-      - elk
-    depends_on:
-      - kibana
+  # nginx:
+  #   image: nginx:latest
+  #   ports:
+  #       - 8080:80
+  #   # volumes:
+  #   #     - ./nginx-config/:/etc/nginx/conf.d/
+  #   command: /bin/bash -c "nginx -g 'daemon off;'"
+  #   ulimits:
+  #     nproc: 65535
+  #   networks:
+  #     - elk
+  #   depends_on:
+  #     - kibana
 
 
 
