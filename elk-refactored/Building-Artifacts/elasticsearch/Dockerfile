@@ -3,6 +3,7 @@ ARG ELK_VERSION
 # https://github.com/elastic/elasticsearch-docker
 FROM docker.elastic.co/elasticsearch/elasticsearch:6.5.4
 RUN export ES_HEAP_SIZE=2g 
+COPY ./config/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 #Configure the Elasticsearch Service Heap Size (which is used of ES Caching).
 #By default, the Elasticsearch service is configured to use a minimum heap size of 256 MB
 #and a maximum heap size of 1 GB.

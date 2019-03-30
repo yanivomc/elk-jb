@@ -4,11 +4,13 @@
 #
 cluster.name: "docker-cluster"
 network.host: 0.0.0.0
+path.repo: ["/tmp/es-snaps"] # this is required for setting the repository for our snapshoots
+# This path must be mounter and configured on Every ES MASTERS AND DATA Nodes
 
 # minimum_master_nodes need to be explicitly set when bound on a public IP
 # set to 1 to allow single node clusters
 # Details: https://github.com/elastic/elasticsearch/pull/17288
-discovery.zen.minimum_master_nodes: 2
+discovery.zen.minimum_master_nodes: 1
 
 ## Use single node discovery in order to disable production mode and avoid bootstrap checks
 ## see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
