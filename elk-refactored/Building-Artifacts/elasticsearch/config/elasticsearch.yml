@@ -21,7 +21,5 @@ discovery.zen.minimum_master_nodes: 2
 xpack.license.self_generated.type: basic
 xpack.monitoring.enabled: true
 xpack.monitoring.collection.enabled: true
-
-
 #xpack.security.enabled: true
 
