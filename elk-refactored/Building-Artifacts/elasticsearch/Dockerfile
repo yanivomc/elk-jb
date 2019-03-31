@@ -17,8 +17,6 @@ COPY ./config/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.ym
 # ES_JAVA_OPTS="-Xms2g -Xmx2g" ./bin/elasticsearch 
 
 
-
-
 # Add your elasticsearch plugins setup here
 # Example: RUN elasticsearch-plugin install analysis-icu
 #RUN elasticsearch-plugin install ingest-user-agent
