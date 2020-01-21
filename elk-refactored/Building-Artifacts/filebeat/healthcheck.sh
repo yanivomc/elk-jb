@@ -1,8 +1,8 @@
 #!/bin/bash
 x=1
-while [ $x -le 10 ]
+while [ $x -le 40 ]
 do
-echo "Checking if Elastic is up - $x out of 10 times"
+echo "Checking if Elastic is up - $x out of 40 times"
 curl -X GET "elasticsearch:9200/_cluster/health?wait_for_status=red&timeout=50s"
 exit_code=`echo $?`
 echo "Exit code $exit_code"
