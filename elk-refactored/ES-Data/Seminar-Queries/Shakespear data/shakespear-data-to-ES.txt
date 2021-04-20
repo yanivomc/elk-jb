@@ -1,21 +1,30 @@
-//load Index mapping :
-//	curl -H "Content-Type: application/json" -XPUT 'localhost:9200/shakespeare' --data-binary @shakes-mapping.json
-//	curl -H 'Content-Type: application/json' -XPOST 'localhost:9200/shakespeare/doc/_bulk?pretty' --data-binary @shakespeare_6.0.json
+load Index mapping :
+	MAPPING: curl  --user elastic:changeme -H "Content-Type: application/json" -XPUT 'localhost:9200/shakespeare' --data-binary @shakes-mapping.json
+  DATA: curl --user elastic:changeme -H 'Content-Type: application/json' -XPOST 'localhost:9200/shakespeare/_bulk?pretty' --data-binary @shakespeare_6.0.json
 
 
+Manual mapping:
 
-// PUT shakespear
-// {
-// 	"mappings" : {
-//  		"doc" : {
-// 			"properties" : {
-// 				"speaker" : {"type": "keyword" },
-// 				"play_name" : {"type": "keyword" },
-// 				"line_id" : { "type" : "integer" },
-// 				"speech_number" : { "type" : "integer" }
-// 			}
-// 		}
-// 	}
-// }
+
+PUT shakespear
+{
+  "mappings": {
+      "properties": {
+        "speaker": {
+          "type": "keyword"
+        },
+        "play_name": {
+          "type": "keyword"
+        },
+        "line_id": {
+          "type": "integer"
+        },
+        "speech_number": {
+          "type": "integer"
+        }
+      }
+    }
+}
+
 
 
