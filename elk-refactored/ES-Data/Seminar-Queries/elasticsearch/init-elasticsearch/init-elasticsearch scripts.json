@@ -1,5 +1,6 @@
 // init-elasticsearch scripts.json
 // Create new Index mapping
+// THERE ARE ERRORS TO FIX! 
 curl -X PUT "localhost:9200/movies/" -d'
 {
   "mappings": {
